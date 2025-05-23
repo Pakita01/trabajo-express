@@ -20,8 +20,14 @@ routerIngles.delete('/:id', (req, res) => {
   res.json(cursoEliminado);
 });
 
+app.put('/:id', (req, res) => {
+    const tema_actualizado = req.body.tema;
+    const id = req.params.id;
 
+    cursos.programacion[1].tema = tema_actualizado;
+    
 
+});
 
 const PUERTO = process.env.PORT || 3000;
 
