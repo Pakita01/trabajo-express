@@ -37,6 +37,29 @@ let infoCurso = {
             vistas: 15722,
             nivel: 'intermedio'
         }
+    ],
+    'ingles': [
+        {
+            id: 1,
+            titulo: 'aprende ingles',
+            grado: 'principio',
+            vistas: 11427,
+            nivel: 'basico'
+        },
+        {
+            id: 2,
+            titulo: 'aprende ingles intermedio',
+            grado:'intermedio',
+            vistas: 18722,
+            nivel: 'intermedio'
+        },
+        {
+            id: 3,
+            titulo: 'aprende ingles avanzado',
+            grado:'avanzado',
+            vistas: 234567,
+            nivel: 'avanzado'
+        }
     ]
 }
 
