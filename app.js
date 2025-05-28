@@ -1,13 +1,74 @@
 const express = require('express');
-const app = express();
-
-app.use(express.json()); // <-- Necesario para leer req.body
+const app = express()
+const {infoCurso} = require('./curso.js');
+const { json } = require('body-parser');
+app.use(express.json());
 
 const { infoCurso } = require('./curso.js');
 
 app.get('/', (req, res) => {
     res.send('mi primer servidor. cursos 🐱‍👤');
 });
+
+
+//matematicas
+function  enviarCursoMatematicas () {
+    const CursoMatematicas ={
+         id: 2,
+            titulo: 'aprende algebra',
+            tema: 'algebra',
+            vistas: 15722,
+            nivel: 'intermedio'
+    }
+    
+    fetch("https://matematicas.com/api/cursos", {
+        method: "POST",
+        headers:{
+            "content-type": "aplication/json"
+        },
+        body: json.stringfy(infoCurso)
+    
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("curso enviado", data);
+    })
+
+    .catch(error => {
+        console.error("error:", error);
+    })
+}
+
+enviarCursoMatematicas();
+
+//programacion
+
+function enviarCursoProgramacion () {
+    const CursoProgramacion = {
+        id: 3,
+            titulo: 'aprende python avanzado',
+            lenguaje: 'python',
+            vistas: 34567,
+            nivel: 'avanzado' 
+    };
+    fetch("https:/7programacion.com/api/curso", {
+        method:"POST",
+        headers: {
+            "content-type": "aplication/json"
+        },
+        body:json.stringfy(CursoProgramacion)
+
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("curso emnviado:", data);
+    })
+    .catch(error => {
+        console.error("error:", error);
+    })
+    
+}
+enviarCursoProgramacion()
 
 // PUT: Actualizar tema de un curso de programación por ID
 app.put('/programacion/:id', (req, res) => {
@@ -34,6 +95,8 @@ app.delete('/ingles/:id', (req, res) => {
     const cursoEliminado = infoCurso.ingles.splice(indice, 1);
     res.json(cursoEliminado);
 });
+
+
 
 const PUERTO = process.env.PORT || 3000;
 
