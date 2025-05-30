@@ -20,12 +20,12 @@ function  enviarCursoMatematicas () {
             nivel: 'intermedio'
     }
     
-    fetch("https://matematicas.com/api/cursos", {
+    fetch("http://matematicas.com/api/cursos", {
         method: "POST",
         headers:{
             "content-type": "application/json"
         },
-        body: JSON.stringfy(CursoMatematicas)
+        body: JSON.stringify(CursoMatematicas)
     
     })
     .then(response => response.json())
@@ -42,7 +42,7 @@ enviarCursoMatematicas();
 
 //programacion
 
-function enviarCursoProgramacion () {
+/* function enviarCursoProgramacion () {
     const CursoProgramacion = {
         id: 3,
             titulo: 'aprende python avanzado',
@@ -50,12 +50,12 @@ function enviarCursoProgramacion () {
             vistas: 34567,
             nivel: 'avanzado' 
     };
-    fetch("https:/programacion.com/api/curso", {
+    fetch("http://programacion.com/api/curso", {
         method:"POST",
         headers: {
             "content-type": "application/json"
         },
-        body:JSON.stringfy(CursoProgramacion)
+        body:JSON.stringify(CursoProgramacion)
 
     })
     .then(response => response.json())
@@ -67,7 +67,7 @@ function enviarCursoProgramacion () {
     })
     
 }
-enviarCursoProgramacion()
+enviarCursoProgramacion()// */
 
 // PUT: Actualizar tema de un curso de programación por ID
 app.put('/programacion/:id', (req, res) => {

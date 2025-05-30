@@ -9,6 +9,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
-  }
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carmezy/trabajo-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carmezy/trabajo-express/issues"
+  },
+  "homepage": "https://github.com/carmezy/trabajo-express#readme"
 }

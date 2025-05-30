@@ -1,5 +1,5 @@
 let infoCurso = {
-    'programamacion': [
+    'programacion': [
         {
             id: 1,
             titulo: 'aprende python',
