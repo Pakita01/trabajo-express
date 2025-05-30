@@ -72,14 +72,18 @@ enviarCursoProgramacion()
 
 // PUT: Actualizar tema de un curso de programación por ID
 app.put('/programacion/:id', (req, res) => {
-    const tema_actualizado = req.body.tema;
-    const id = parseInt(req.params.id);
+    const tema_actualizado = req.body.tema; // Obtiene el nuevo tema del cuerpo de la petición
+    const id = parseInt(req.params.id); // Obtiene el ID del curso desde la URL
 
-    const curso = infoCurso.programamacion.find(curso => curso.id === id);
+    // Busca el curso con ese ID en el arreglo de cursos de programación
+    const curso = infoCurso.programacion.find(curso => curso.id === id);
     if (!curso) {
+        // Si no lo encuentra, responde con error 404
         return res.status(404).send('Curso no encontrado.');
     }
+    // Si lo encuentra, actualiza el tema
     curso.tema = tema_actualizado;
+    // Devuelve el curso actualizado como respuesta
     res.json(curso);
 });
 
