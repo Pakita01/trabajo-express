@@ -9,6 +9,20 @@ app.get('/', (req, res) => {
     res.send('mi primer servidor. cursos 🐱‍👤');
 });
 
+// GET: Obtener todos los cursos de programación (endpoint echo por gustavo)
+app.get('/programacion', (req, res) => {
+    res.json(infoCurso.programacion);
+});
+
+// GET: obtener especificamente un curso de programación por ID (endpoint echo por gustavo)
+app.get('/programacion/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const curso = infoCurso.programacion.find(curso => curso.id === id);
+    if (!curso) {
+        return res.status(404).send('Curso no encontrado.');
+    }
+    res.json(curso);
+});
 
 /* //matematicas
 function  enviarCursoMatematicas () {
@@ -40,34 +54,19 @@ function  enviarCursoMatematicas () {
 
 enviarCursoMatematicas(); */
 
-//programacion
-
-/* function enviarCursoProgramacion () {
-    const CursoProgramacion = {
-        id: 3,
-            titulo: 'aprende python avanzado',
-            lenguaje: 'python',
-            vistas: 34567,
-            nivel: 'avanzado' 
-    };
-    fetch("http://programacion.com/api/curso", {
-        method:"POST",
-        headers: {
-            "content-type": "application/json"
-        },
-        body:JSON.stringify(CursoProgramacion)
-
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("curso enviado:", data);
-    })
-    .catch(error => {
-        console.error("error:", error);
-    })
-    
-}
-enviarCursoProgramacion()// */
+// POST: Crear un nuevo curso de programación (echo por gustavo)
+app.post('/programacion', (req, res) => {
+    const nuevoCurso = req.body; // Obtiene el nuevo curso del cuerpo de la petición
+    if (!nuevoCurso || !nuevoCurso.titulo || !nuevoCurso.lenguaje || !nuevoCurso.vistas || !nuevoCurso.nivel) {
+        return res.status(400).send('Datos del curso incompletos.');
+    }
+    // Asigna un nuevo ID al curso
+    nuevoCurso.id = infoCurso.programacion.length + 1;
+    // Agrega el nuevo curso al arreglo de cursos de programación
+    infoCurso.programacion.push(nuevoCurso);
+    // Devuelve el curso creado como respuesta
+    res.status(201).json(nuevoCurso);
+});
 
 // PUT: Actualizar tema de un curso de programación por ID
 app.put('/programacion/:id', (req, res) => {
@@ -99,7 +98,18 @@ app.delete('/ingles/:id', (req, res) => {
     res.json(cursoEliminado);
 });
 
+// delete: Eliminar curso de programación por ID
+app.delete('/programacion/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const indice = infoCurso.programacion.findIndex(curso => curso.id === id);
 
+    if (indice === -1) {
+        return res.status(404).send('Curso no encontrado.');
+    }
+
+    const cursoEliminado = infoCurso.programacion.splice(indice, 1);
+    res.json(cursoEliminado);
+});
 
 const PUERTO = process.env.PORT || 3000;
 
