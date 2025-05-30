@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 
-//matematicas
+/* //matematicas
 function  enviarCursoMatematicas () {
     const CursoMatematicas ={
          id: 2,
@@ -38,7 +38,7 @@ function  enviarCursoMatematicas () {
     })
 }
 
-enviarCursoMatematicas();
+enviarCursoMatematicas(); */
 
 //programacion
 
