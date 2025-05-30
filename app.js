@@ -4,7 +4,6 @@ const {infoCurso} = require('./curso.js');
 const { json } = require('body-parser');
 app.use(express.json());
 
-const { infoCurso } = require('./curso.js');
 
 app.get('/', (req, res) => {
     res.send('mi primer servidor. cursos 🐱‍👤');
@@ -24,9 +23,9 @@ function  enviarCursoMatematicas () {
     fetch("https://matematicas.com/api/cursos", {
         method: "POST",
         headers:{
-            "content-type": "aplication/json"
+            "content-type": "application/json"
         },
-        body: json.stringfy(infoCurso)
+        body: JSON.stringfy(CursoMatematicas)
     
     })
     .then(response => response.json())
@@ -51,17 +50,17 @@ function enviarCursoProgramacion () {
             vistas: 34567,
             nivel: 'avanzado' 
     };
-    fetch("https:/7programacion.com/api/curso", {
+    fetch("https:/programacion.com/api/curso", {
         method:"POST",
         headers: {
-            "content-type": "aplication/json"
+            "content-type": "application/json"
         },
-        body:json.stringfy(CursoProgramacion)
+        body:JSON.stringfy(CursoProgramacion)
 
     })
     .then(response => response.json())
     .then(data => {
-        console.log("curso emnviado:", data);
+        console.log("curso enviado:", data);
     })
     .catch(error => {
         console.error("error:", error);
