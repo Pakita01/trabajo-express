@@ -68,7 +68,7 @@ app.post('/programacion', (req, res) => {
     res.status(201).json(nuevoCurso);
 });
 
-// PUT: Actualizar tema de un curso de programación por ID
+// PUT: Actualizar tema de un curso de programación por ID (echo por gustavo)
 app.put('/programacion/:id', (req, res) => {
     const tema_actualizado = req.body.tema; // Obtiene el nuevo tema del cuerpo de la petición
     const id = parseInt(req.params.id); // Obtiene el ID del curso desde la URL
@@ -98,7 +98,7 @@ app.delete('/ingles/:id', (req, res) => {
     res.json(cursoEliminado);
 });
 
-// delete: Eliminar curso de programación por ID
+// delete: Eliminar curso de programación por ID (echo por gustavo)
 app.delete('/programacion/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const indice = infoCurso.programacion.findIndex(curso => curso.id === id);
