@@ -85,6 +85,9 @@ app.put('/programacion/:id', (req, res) => {
     res.json(curso);
 });
 
+const routerIngles = express.router();
+app.use('/api/cursos/ingles', routerIngles)
+
 // GET: Todos los cursos de inglés
 routerIngles.get('/', (req, res) => {
   res.json(infoCurso.ingles);
@@ -111,7 +114,7 @@ routerIngles.post('/', (req, res) => {
   if (infoCurso.ingles.some(curso => curso.id === nuevoCurso.id)) {
     return res.status(409).json({ error: "El ID ya existe" });
   }
-
+app.use(express.json());
   infoCurso.ingles.push(nuevoCurso);
   res.status(201).json(nuevoCurso);
 });
