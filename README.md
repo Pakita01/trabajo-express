@@ -1,39 +1,56 @@
 # trabajo-express
+
+descripcion: API REST para cursos academicos de matematica, programacion e idiomas
+
 requisitos:
 node.js (de preferecia la ultima version)
 express (de preferencia la ultima version)
+nodemon (de preferencia la ultima version)
+
 npm (para instalar las dependencias)
 
 instalacion:
 clonar el repositorio desde el el link del proyecto y luego utilizar el comando git clone para descargarlo de manera local.
-ejemplo de uso : git clone (url del proyecto aqui)
+ejemplo de uso : git clone https://github.com/carmezy/trabajo-express.git
 
 instalar las dependencias necesarias utilizando npm install
 
-rutas: 
-(ostraiker)
-metodo GET: Obtener todos los cursos de matemáticas
- metodp GET: Obtener un curso de matemáticas por ID
- 
- metodo POST: Agregar un nuevo curso de matemáticas
- 
- metodo PUT: Actualizar un curso de matemáticas por ID
+iniciar npm start
 
- metodo DELETE: Eliminar un curso de matemáticas por ID
+rutas:
 
-(gustavo)
-metodo get   programacion (Obtener todos los cursos de programación)
-            /programacion/:id (obtener especificamente un curso de programación por ID)
-metodo post '/programacion' (Crear un nuevo curso de programación)
-metodo put '/programacion/:id' (Actualizar tema de un curso de programación por ID)
+### Programación (gustavo)
 
-(pakita)
-Metodo GET: Todos los cursos de inglés
+| Acción                                    | Método | Endpoint                          | Ejemplo uso                                                                                           |
+|--------------------------------------------|--------|------------------------------------|-------------------------------------------------------------------------------------------------------|
+| Obtener todos los cursos de programación   | GET    | `/api/curso/programacion`          | `curl http://localhost:3000/api/curso/programacion`                                                   |
+| Obtener un curso de programación por ID    | GET    | `/api/curso/programacion/:id`      | `curl http://localhost:3000/api/curso/programacion/1`                                                 |
+| Crear un nuevo curso de programación       | POST   | `/api/curso/programacion`          | `curl -X POST -H "Content-Type: application/json" -d '{"titulo":"aprende javascript","lenguaje":"javascript","vistas":10000,"nivel":"basico"}' http://localhost:3000/api/curso/programacion` |
+| Actualizar el tema de un curso por ID      | PUT    | `/api/curso/programacion/:id`      | `curl -X PUT -H "Content-Type: application/json" -d '{"tema":"nuevo tema"}' http://localhost:3000/api/curso/programacion/1` |
+| Eliminar un curso de programación por ID   | DELETE | `/api/curso/programacion/:id`      | `curl -X DELETE http://localhost:3000/api/curso/programacion/1`                                       |
 
-Metodo GET: Cursos de inglés por grado
-URL : /:grado
-Metodo POST: Añadir nuevo curso de inglés
-Metodo PUT: Actualizar curso de inglés por ID
-Metodo DELETE: Eliminar curso de inglés por ID
+---
 
-URL: api/curso/ingles/:id
+### Inglés (pakita)
+
+| Acción                                    | Método | Endpoint                          | Ejemplo uso                                                                                           |
+|--------------------------------------------|--------|------------------------------------|-------------------------------------------------------------------------------------------------------|
+| Obtener todos los cursos de inglés         | GET    | `/api/curso/ingles`               | `curl http://localhost:3000/api/curso/ingles`                                                         |
+| Obtener cursos de inglés por grado         | GET    | `/api/curso/ingles/:grado`        | `curl http://localhost:3000/api/curso/ingles/avanzado`                                                |
+| Añadir nuevo curso de inglés               | POST   | `/api/curso/ingles`               | `curl -X POST -H "Content-Type: application/json" -d '{"titulo":"ingles para negocios","grado":"avanzado","vistas":5000,"nivel":"avanzado"}' http://localhost:3000/api/curso/ingles` |
+| Actualizar curso de inglés por ID          | PUT    | `/api/curso/ingles/:id`           | `curl -X PUT -H "Content-Type: application/json" -d '{"titulo":"ingles intermedio actualizado","grado":"intermedio","vistas":20000,"nivel":"intermedio"}' http://localhost:3000/api/curso/ingles/2` |
+| Eliminar curso de inglés por ID            | DELETE | `/api/curso/ingles/:id`           | `curl -X DELETE http://localhost:3000/api/curso/ingles/2`                                             |
+
+---
+
+## Notas
+
+- Todos los endpoints devuelven respuestas en formato JSON.
+- Asegúrate de enviar los datos en formato JSON para métodos POST y PUT.
+- Si el puerto de tu servidor es diferente a `3000`, reemplázalo en los ejemplos
+
+- ##trabajo echo por:
+
+- gustavo rodriguez (github.com/carmezy)
+- pakita dubreus (github.com/pakita01)
+- ostraiker 
