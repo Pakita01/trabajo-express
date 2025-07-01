@@ -1,99 +1,132 @@
+// Importa el módulo Express para crear el servidor.
 const express = require('express');
-const app = express();//rea una instancia de la aplicación Express
 
-const {infoCurso} = require('./curso.js')//importa un objeto llamado infoCurso desde un archivo local llamado curso.js
+// Importa el objeto infoCurso desde el archivo local curso.js.
+const { infoCurso } = require('./curso.js');
 
-// Define una ruta GET para la raíz del servidor (/)
-app.get('/', (req,res) => {
-    res.send('mi primer servidor. cursos 🐱‍👤')
-})
-//(req, res) => { ... }: Es una función de callback que 
-// se ejecuta cuando se recibe una petición. 
-// req es el objeto de la petición (contiene datos de la solicitud del cliente) 
-// y res es el objeto de la respuesta (para enviar datos al cliente).
+// Crea una instancia de la aplicación Express.
+const app = express();
 
-// Router para inglés
-const routerIngles = express.Router();
-app.use('/api/cursos/ingles', routerIngles);
+// Middleware para parsear el cuerpo de las peticiones en formato JSON.
+app.use(express.json());
 
-// GET: Todos los cursos de inglés
-routerIngles.get('/', (req, res) => {
-  res.json(infoCurso.ingles);//Envía el arreglo completo de cursos de inglés (asumiendo que infoCurso.ingles es un arreglo) 
-  // como una respuesta JSON al cliente.
+// Ruta principal: Responde con un mensaje de bienvenida.
+app.get('/', (req, res) => {
+    res.send('¡Bienvenido a mi servidor de cursos! 📚');
 });
 
-// GET: Cursos de inglés por grado
-// para obtener cursos de inglés filtrados por un grado específico. La URL sería algo como GET /api/ingles/basico o GET /api/ingles/avanzado.
-routerIngles.get('/:grado', (req, res) => {
-  const grado = req.params.grado;//Extrae el valor del parámetro grado de la URL.
-  const resultados = infoCurso.ingles.filter(curso => curso.grado === grado);//Filtra el arreglo infoCurso.ingles para encontrar solo los cursos cuyo grado coincida con el valor extraído.
-  if (resultados.length === 0) {//Si no se encuentran cursos con ese grado, envía una respuesta con estado HTTP 404 (No Encontrado) y un mensaje.
-    return res.status(404).send(`No se encontraron cursos de inglés de grado ${grado}.`);
-  }
-  res.json(resultados);
+// --- Endpoints para Cursos de Inglés ---
+
+// GET: Obtener todos los cursos de inglés.
+app.get('/ingles', (req, res) => {
+    // Envía la lista completa de cursos de inglés como respuesta JSON.
+    res.json(infoCurso.ingles);
 });
 
-// Las solicitudes POST se usan para enviar datos al servidor para crear un nuevo recurso. La URL sería POST /api/ingles.
-// POST: Añadir nuevo curso de inglés
-routerIngles.post('/', (req, res) => {
-  const nuevoCurso = req.body;//Extrae el cuerpo de la petición (los datos enviados por el cliente, generalmente en formato JSON) y lo asigna a nuevoCurso
+// GET: Obtener específicamente un curso de inglés por ID.
+app.get('/ingles/:id', (req, res) => {
+    // Convierte el ID de la URL a un número entero.
+    const id = parseInt(req.params.id);
+    // Busca el curso en el arreglo de cursos de inglés por su ID.
+    const curso = infoCurso.ingles.find(curso => curso.id === id);
 
-  if (!validarCurso(nuevoCurso)) {
-    return res.status(400).json({ error: "Faltan campos obligatorios" });
-  }
-
-  if (infoCurso.ingles.some(curso => curso.id === nuevoCurso.id)) {
-    return res.status(409).json({ error: "El ID ya existe" });
-  }//Usa el método some() para comprobar si al menos un curso en el arreglo infoCurso.ingles tiene el mismo id que nuevoCurso.
-
-  app.use(express.json());//middleware para parsear JSON
-  infoCurso.ingles.push(nuevoCurso);//Agrega el objeto nuevoCurso al final del arreglo infoCurso.ingles.
-  res.status(201).json(nuevoCurso);//Envía una respuesta con estado HTTP 201 (Created) y el objeto del curso recién creado en formato JSON.
+    // Si el curso no se encuentra, envía una respuesta 404.
+    if (!curso) {
+        return res.status(404).send('Curso de inglés no encontrado.');
+    }
+    // Si se encuentra, envía el curso como respuesta JSON.
+    res.json(curso);
 });
 
-// PUT: Actualizar curso de inglés por ID
-routerIngles.put('/:id', (req, res) => {
-  const id = parseInt(req.params.id);//Extrae el ID de la URL y lo convierte a un número entero (ya que los parámetros de URL son cadenas de texto).
-  const cursoActualizado = req.body;// Obtiene los datos de actualización del cuerpo de la petición.
+// POST: Crear un nuevo curso de inglés.
+app.post('/ingles', (req, res) => {
+    // Obtiene los datos del nuevo curso del cuerpo de la petición.
+    const nuevoCurso = req.body;
 
-  if (Object.keys(cursoActualizado).length === 0) {//Si está vacío, devuelve un error 400.
-    return res.status(400).json({ error: "No se proporcionaron datos para actualizar" });
-  }
+    // Valida que los datos esenciales del curso estén presentes.
+    if (!nuevoCurso || !nuevoCurso.titulo || !nuevoCurso.idioma || !nuevoCurso.vistas || !nuevoCurso.nivel) {
+        return res.status(400).send('Datos del curso incompletos. Se requieren título, idioma, vistas y nivel.');
+    }
 
-  const indice = infoCurso.ingles.findIndex(curso => curso.id === id);
-  if (indice === -1) {
-    return res.status(404).json({ error: "Curso no encontrado" });
-  }
+    // Asigna un nuevo ID al curso (basado en la longitud actual del arreglo + 1).
+    nuevoCurso.id = infoCurso.ingles.length + 1;
+    // Agrega el nuevo curso al arreglo de cursos de inglés.
+    infoCurso.ingles.push(nuevoCurso);
 
-  infoCurso.ingles[indice] = { ...infoCurso.ingles[indice], ...cursoActualizado };//Crea un nuevo objeto que combina las propiedades del curso existente 
-  res.json(infoCurso.ingles[indice]);// Envía el curso actualizado como respuesta JSON.
+    // Envía el curso creado con un estado 201 (Creado) como respuesta JSON.
+    res.status(201).json(nuevoCurso);
 });
 
-// DELETE: Eliminar curso de inglés por ID
-routerIngles.delete('/:id', (req, res) => {
-  const id = parseInt(req.params.id);//extrae y convierte el ID de la URL.
-  const indice = infoCurso.ingles.findIndex(curso => curso.id === id);//Busca el índice del curso a eliminar.
+// PUT: Actualizar completamente un curso de inglés por ID.
+app.put('/ingles/:id', (req, res) => {
+    // Obtiene los datos actualizados del curso del cuerpo de la petición.
+    const cursoActualizado = req.body;
+    // Convierte el ID de la URL a un número entero.
+    const id = parseInt(req.params.id);
 
-  if (indice === -1) {
-    return res.status(404).send('Curso no encontrado.');
-  }
+    // Busca el índice del curso con ese ID en el arreglo de cursos de inglés.
+    const indice = infoCurso.ingles.findIndex(curso => curso.id === id);
 
-  const cursoEliminado = infoCurso.ingles.splice(indice, 1);// El método splice() elimina elementos de un arreglo. Aquí, elimina 1 elemento a partir del indice encontrado. 
-  res.json(cursoEliminado);
+    // Si el curso no se encuentra, envía una respuesta 404.
+    if (indice === -1) {
+        return res.status(404).send('Curso de inglés no encontrado para actualizar.');
+    }
+
+    // Actualiza el curso completo en el arreglo, manteniendo el mismo ID.
+    infoCurso.ingles[indice] = { ...cursoActualizado, id: id };
+
+    // Envía el curso actualizado como respuesta JSON.
+    res.json(infoCurso.ingles[indice]);
 });
 
-app.put('/:id', (req, res) => {
-    const tema_actualizado = req.body.tema;//Obtiene el valor de la propiedad tema del cuerpo de la petición.
-    const id = req.params.id;// Obtiene el ID de la URL, aunque no se usa para buscar el curso.
+// PATCH: Actualizar parcialmente un curso de inglés por ID (ej. solo el nivel).
+app.patch('/ingles/:id', (req, res) => {
+    // Obtiene los campos a actualizar del cuerpo de la petición.
+    const camposActualizados = req.body;
+    // Convierte el ID de la URL a un número entero.
+    const id = parseInt(req.params.id);
 
-    cursos.programacion[1].tema = tema_actualizado;//Actualiza directamente la propiedad tema del segundo elemento (índice 1) del arreglo 
-    
+    // Busca el curso en el arreglo de cursos de inglés por su ID.
+    const curso = infoCurso.ingles.find(curso => curso.id === id);
 
+    // Si el curso no se encuentra, envía una respuesta 404.
+    if (!curso) {
+        return res.status(404).send('Curso de inglés no encontrado para actualización parcial.');
+    }
+
+    // Itera sobre los campos proporcionados en la petición y actualiza el curso.
+    for (const propiedad in camposActualizados) {
+        curso[propiedad] = camposActualizados[propiedad];
+    }
+
+    // Envía el curso actualizado como respuesta JSON.
+    res.json(curso);
 });
 
+// DELETE: Eliminar un curso de inglés por ID.
+app.delete('/ingles/:id', (req, res) => {
+    // Convierte el ID de la URL a un número entero.
+    const id = parseInt(req.params.id);
+    // Busca el índice del curso con ese ID en el arreglo de cursos de inglés.
+    const indice = infoCurso.ingles.findIndex(curso => curso.id === id);
+
+    // Si el curso no se encuentra, envía una respuesta 404.
+    if (indice === -1) {
+        return res.status(404).send('Curso de inglés no encontrado para eliminar.');
+    }
+
+    // Elimina el curso del arreglo y guarda el curso eliminado.
+    const cursoEliminado = infoCurso.ingles.splice(indice, 1);
+    // Envía el curso eliminado como respuesta JSON.
+    res.json(cursoEliminado);
+});
+
+// Define el puerto en el que el servidor escuchará.
+// Utiliza el puerto definido en las variables de entorno o el puerto 4000 por defecto.
 const PUERTO = process.env.PORT || 3000;
 
-
+// Inicia el servidor y lo pone a escuchar en el puerto especificado.
 app.listen(PUERTO, () => {
-    console.log('el servidor esta iniciando procesos en el puerto ${PUERTO}...')
+    console.log(`El servidor está escuchando en el puerto ${PUERTO}...`);
+    console.log("nuevo servidor!!!")
 });
