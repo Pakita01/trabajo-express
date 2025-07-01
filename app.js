@@ -94,9 +94,19 @@ app.put('/programacion/:id', (req, res) => {
     res.json(curso);
 });
 
-// GET: Todos los cursos de inglés
-routerIngles.get('/', (req, res) => {
-  res.json(infoCurso.ingles);
+
+// delete: Eliminar curso de programación por ID (echo por gustavo)
+app.delete('/programacion/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const indice = infoCurso.programacion.findIndex(curso => curso.id === id);
+
+    if (indice === -1) {
+        return res.status(404).send('Curso no encontrado.');
+    }
+
+    const cursoEliminado = infoCurso.programacion.splice(indice, 1);
+    res.json(cursoEliminado);
+
 });
 
 // --- Endpoints para Cursos de Inglés (Pakita)---
@@ -201,19 +211,6 @@ app.delete('/ingles/:id', (req, res) => {
     res.json(cursoEliminado);
 });
 
-// delete: Eliminar curso de programación por ID (echo por gustavo)
-app.delete('/programacion/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const indice = infoCurso.programacion.findIndex(curso => curso.id === id);
-
-    if (indice === -1) {
-        return res.status(404).send('Curso no encontrado.');
-    }
-
-    const cursoEliminado = infoCurso.programacion.splice(indice, 1);
-    res.json(cursoEliminado);
-
-});
 
 // DELETE: Eliminar un curso de inglés por ID.
 app.delete('/ingles/:id', (req, res) => {
@@ -235,7 +232,6 @@ app.delete('/ingles/:id', (req, res) => {
 
 // Define el puerto en el que el servidor escuchará.
 const PUERTO = process.env.PORT || 3000;
-
 
 // Inicia el servidor y lo pone a escuchar en el puerto especificado.
 app.listen(PUERTO, () => {
