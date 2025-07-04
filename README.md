@@ -21,10 +21,13 @@ rutas:
 
 ### Programación (gustavo)
 
-| Acción                                    | Método | Endpoint                          | Ejemplo uso                                                                                           |
-|--------------------------------------------|--------|------------------------------------|-------------------------------------------------------------------------------------------------------|
-| Obtener todos los cursos de programación   | GET    | `/api/curso/programacion`          | `curl http://localhost:3000/api/curso/programacion`                                                   |
-| Obtener un curso de programación por ID    | GET    | `/api/curso/programacion/:id`      | `curl http://localhost:3000/api/curso/programacion/1`                                                 |
+| Acción                                              | Método | Endpoint                                         | Ejemplo uso                                                                                           |
+|-----------------------------------------------------|--------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| Obtener todos los cursos de programación            | GET    | `/api/curso/programacion`                        | `curl http://localhost:3000/api/curso/programacion`                                                   |
+| Obtener un curso de programación por ID             | GET    | `/api/curso/programacion/:id`                    | `curl http://localhost:3000/api/curso/programacion/1`                                                 |
+| Obtener cursos de programación por lenguaje         | GET    | `/api/curso/programacion/lenguaje/:lenguaje`     | `curl http://localhost:3000/api/curso/programacion/lenguaje/javascript`                               |
+| Obtener cursos de programación por nivel            | GET    | `/api/curso/programacion/nivel/:nivel`           | `curl http://localhost:3000/api/curso/programacion/nivel/basico`                                      |
+| Obtener cursos de programación por vistas mínimas   | GET    | `/api/curso/programacion/vistas/:vistas`         | `curl http://localhost:3000/api/curso/programacion/vistas/10000`                                      |
 | Crear un nuevo curso de programación       | POST   | `/api/curso/programacion`          | `curl -X POST -H "Content-Type: application/json" -d '{"titulo":"aprende javascript","lenguaje":"javascript","vistas":10000,"nivel":"basico"}' http://localhost:3000/api/curso/programacion` |
 | Actualizar el tema de un curso por ID      | PUT    | `/api/curso/programacion/:id`      | `curl -X PUT -H "Content-Type: application/json" -d '{"tema":"nuevo tema"}' http://localhost:3000/api/curso/programacion/1` |
 | Eliminar un curso de programación por ID   | DELETE | `/api/curso/programacion/:id`      | `curl -X DELETE http://localhost:3000/api/curso/programacion/1`                                       |
@@ -49,8 +52,8 @@ rutas:
 - Asegúrate de enviar los datos en formato JSON para métodos POST y PUT.
 - Si el puerto de tu servidor es diferente a `3000`, reemplázalo en los ejemplos
 
-- ##trabajo echo por:
+- ## trabajo realizado por
 
-- gustavo rodriguez (github.com/carmezy)
-- pakita dubreus (github.com/pakita01)
-- ostraiker 
+- gustavo rodriguez (https://github.com/carmezy)
+- pakita dubreus (https://github.com/Pakita01)
+- ostraikel (https://github.com/ostraikel)
