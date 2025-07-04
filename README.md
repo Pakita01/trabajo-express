@@ -21,16 +21,16 @@ rutas:
 
 ### Programación (gustavo)
 
-| Acción                                              | Método | Endpoint                                         | Ejemplo uso                                                                                           |
-|-----------------------------------------------------|--------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| Obtener todos los cursos de programación            | GET    | `/api/curso/programacion`                        | `curl http://localhost:3000/api/curso/programacion`                                                   |
-| Obtener un curso de programación por ID             | GET    | `/api/curso/programacion/:id`                    | `curl http://localhost:3000/api/curso/programacion/1`                                                 |
-| Obtener cursos de programación por lenguaje         | GET    | `/api/curso/programacion/lenguaje/:lenguaje`     | `curl http://localhost:3000/api/curso/programacion/lenguaje/javascript`                               |
-| Obtener cursos de programación por nivel            | GET    | `/api/curso/programacion/nivel/:nivel`           | `curl http://localhost:3000/api/curso/programacion/nivel/basico`                                      |
-| Obtener cursos de programación por vistas mínimas   | GET    | `/api/curso/programacion/vistas/:vistas`         | `curl http://localhost:3000/api/curso/programacion/vistas/10000`                                      |
-| Crear un nuevo curso de programación       | POST   | `/api/curso/programacion`          | `curl -X POST -H "Content-Type: application/json" -d '{"titulo":"aprende javascript","lenguaje":"javascript","vistas":10000,"nivel":"basico"}' http://localhost:3000/api/curso/programacion` |
-| Actualizar el tema de un curso por ID      | PUT    | `/api/curso/programacion/:id`      | `curl -X PUT -H "Content-Type: application/json" -d '{"tema":"nuevo tema"}' http://localhost:3000/api/curso/programacion/1` |
-| Eliminar un curso de programación por ID   | DELETE | `/api/curso/programacion/:id`      | `curl -X DELETE http://localhost:3000/api/curso/programacion/1`                                       |
+| Acción                                              | Método | Endpoint                                         | Ejemplo uso en Insomnia                                                                                 |
+|-----------------------------------------------------|--------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Obtener todos los cursos de programación            | GET    | `/api/curso/programacion`                        | GET → http://localhost:3000/api/curso/programacion                                                      |
+| Obtener un curso de programación por ID             | GET    | `/api/curso/programacion/:id`                    | GET → http://localhost:3000/api/curso/programacion/1                                                    |
+| Obtener cursos de programación por lenguaje         | GET    | `/api/curso/programacion/lenguaje/:lenguaje`     | GET → http://localhost:3000/api/curso/programacion/lenguaje/javascript                                  |
+| Obtener cursos de programación por nivel            | GET    | `/api/curso/programacion/nivel/:nivel`           | GET → http://localhost:3000/api/curso/programacion/nivel/basico                                         |
+| Obtener cursos de programación por vistas mínimas   | GET    | `/api/curso/programacion/vistas/:vistas`         | GET → http://localhost:3000/api/curso/programacion/vistas/10000                                         |
+| Crear un nuevo curso de programación                | POST   | `/api/curso/programacion`                        | POST → http://localhost:3000/api/curso/programacion<br>Body (JSON):<br>{<br>  "titulo": "aprende javascript",<br>  "lenguaje": "javascript",<br>  "vistas": 10000,<br>  "nivel": "basico"<br>} |
+| Actualizar el tema de un curso por ID               | PUT    | `/api/curso/programacion/:id`                    | PUT → http://localhost:3000/api/curso/programacion/1<br>Body (JSON):<br>{<br>  "tema": "nuevo tema"<br>} |
+| Eliminar un curso de programación por ID            | DELETE | `/api/curso/programacion/:id`                    | DELETE → http://localhost:3000/api/curso/programacion/1                                                 |
 
 ---
 
