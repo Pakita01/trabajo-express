@@ -5,7 +5,7 @@ const { json } = require('body-parser');
 app.use(express.json());
 
 const programacionRouter = require('./routes/programacion');
-app.use('/api/programacion', programacionRouter);
+app.use('/api/curso/programacion', programacionRouter);
 
 app.get('/', (req, res) => {
     res.send('mi primer servidor. cursos 🐱‍👤');
