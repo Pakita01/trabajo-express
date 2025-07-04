@@ -20,8 +20,32 @@ let infoCurso = {
             lenguaje: 'python',
             vistas: 34567,
             nivel: 'avanzado'
+        },
+        {
+            id: 4,
+            titulo: 'aprende javascript',
+            lenguaje: 'javascript',
+            vistas: 12345,
+            nivel: 'basico'
+        },
+        {
+            id: 5,
+            titulo: 'aprende javascript intermedio',
+            lenguaje: 'javascript',
+            vistas: 23456,
+            nivel: 'intermedio'
+        },
+        {
+            id: 6,
+            titulo: 'aprende javascript avanzado',
+            lenguaje: 'javascript',
+            vistas: 45678,
+            nivel: 'avanzado'
         }
     ],
+
+    
+
     'matematicas': [
         {
             id: 1,

@@ -5,7 +5,7 @@ const { json } = require('body-parser');
 app.use(express.json());
 
 const programacionRouter = require('./routes/programacion');
-app.use('/programacion', programacionRouter);
+app.use('/api/programacion', programacionRouter);
 
 app.get('/', (req, res) => {
     res.send('mi primer servidor. cursos 🐱‍👤');
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 
 
-const routerIngles = express.router();
+/* const routerIngles = express.router();
 app.use('/api/cursos/ingles', routerIngles)
 
 // GET: Todos los cursos de inglés
@@ -83,7 +83,7 @@ app.delete('/ingles/:id', (req, res) => {
 
     const cursoEliminado = infoCurso.ingles.splice(indice, 1);
     res.json(cursoEliminado);
-});
+}); */
 
 
 
