@@ -94,7 +94,6 @@ router.put('/:id', (req, res) => {
     const { id: nuevoId, titulo, lenguaje, vistas, nivel } = req.body;
 
     // Actualiza los campos si se proporcionan en el body
-    if (nuevoId !== undefined) curso.id = nuevoId;
     if (titulo !== undefined) curso.titulo = titulo;
     if (lenguaje !== undefined) curso.lenguaje = lenguaje;
     if (vistas !== undefined) curso.vistas = vistas;
