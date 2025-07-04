@@ -29,7 +29,7 @@ rutas:
 | Obtener cursos de programación por nivel            | GET    | `/api/curso/programacion/nivel/:nivel`           | GET → http://localhost:3000/api/curso/programacion/nivel/basico                                         |
 | Obtener cursos de programación por vistas mínimas   | GET    | `/api/curso/programacion/vistas/:vistas`         | GET → http://localhost:3000/api/curso/programacion/vistas/10000                                         |
 | Crear un nuevo curso de programación                | POST   | `/api/curso/programacion`                        | POST → http://localhost:3000/api/curso/programacion<br>Body (JSON):<br>{<br>  "titulo": "aprende javascript",<br>  "lenguaje": "javascript",<br>  "vistas": 10000,<br>  "nivel": "basico"<br>} |
-| Actualizar el tema de un curso por ID               | PUT    | `/api/curso/programacion/:id`                    | PUT → http://localhost:3000/api/curso/programacion/1<br>Body (JSON):<br>{<br>  "tema": "nuevo tema"<br>} |
+| Actualizar un curso de programación por ID          | PUT    | `/api/curso/programacion/:id`                    | PUT → http://localhost:3000/api/curso/programacion/1<br>Body (JSON):<br>{<br>  "id": 1,<br>  "titulo": "nuevo titulo",<br>  "lenguaje": "nuevo lenguaje",<br>  "vistas": 9999,<br>  "nivel": "avanzado"<br>} |
 | Eliminar un curso de programación por ID            | DELETE | `/api/curso/programacion/:id`                    | DELETE → http://localhost:3000/api/curso/programacion/1                                                 |
 
 ---

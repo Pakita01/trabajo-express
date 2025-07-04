@@ -80,10 +80,9 @@ router.post('/', (req, res) => {
     res.status(201).json(nuevoCurso);
 });
 
-// PUT: Actualizar tema de un curso de programación por ID (endpoint echo por gustavo)
+// PUT: Actualizar un curso de programación por ID (actualiza id, titulo, lenguaje, vistas y nivel)
 router.put('/:id', (req, res) => {
-    // Obtiene el nuevo tema y el ID del curso
-    const tema_actualizado = req.body.tema;
+    // Obtiene el ID del curso a actualizar
     const id = parseInt(req.params.id);
     // Busca el curso con ese ID
     const curso = infoCurso.programacion.find(curso => curso.id === id);
@@ -91,8 +90,16 @@ router.put('/:id', (req, res) => {
         // Si no existe, responde con 404
         return res.status(404).send('Curso no encontrado.');
     }
-    // Actualiza el tema del curso
-    curso.tema = tema_actualizado;
+    // Obtiene los nuevos datos del cuerpo de la petición
+    const { id: nuevoId, titulo, lenguaje, vistas, nivel } = req.body;
+
+    // Actualiza los campos si se proporcionan en el body
+    if (nuevoId !== undefined) curso.id = nuevoId;
+    if (titulo !== undefined) curso.titulo = titulo;
+    if (lenguaje !== undefined) curso.lenguaje = lenguaje;
+    if (vistas !== undefined) curso.vistas = vistas;
+    if (nivel !== undefined) curso.nivel = nivel;
+
     // Devuelve el curso actualizado
     res.json(curso);
 });
