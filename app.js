@@ -7,7 +7,6 @@ app.use(express.json());
 const programacionRouter = require('./routes/programacion');
 app.use('/api/curso/programacion', programacionRouter);
 
-
 const inglesRouter = require('./routes/ingles');
 app.use('/api/curso/ingles', inglesRouter);
 
