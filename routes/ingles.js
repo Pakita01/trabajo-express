@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // Se importa el objeto infoCurso con los cursos (asumiendo que tiene una propiedad 'ingles')
-const { infoCurso } = require('../../assets/cursos/curso');
+const { infoCurso } = require('../assets/cursos/curso');
 
 // GET: Obtener todos los cursos de inglés
 router.get('/', (req, res) => {
