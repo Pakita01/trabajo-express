@@ -7,16 +7,17 @@ app.use(express.json());
 const programacionRouter = require('./routes/programacion');
 app.use('/api/curso/programacion', programacionRouter);
 
+
+const inglesRouter = require('./routes/ingles');
+app.use('/api/curso/ingles', inglesRouter);
+
+const matematicaRouter = require('./routes/matematica'); 
+app.use('/api/curso/matematica', matematicaRouter); 
+
+
 app.get('/', (req, res) => {
     res.send('mi primer servidor. cursos 🐱‍👤');
 });
-
-
-
-
-
-
-
 
 
 
