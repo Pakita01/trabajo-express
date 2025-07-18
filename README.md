@@ -35,14 +35,16 @@ rutas:
 ---
 
 ### Inglés (pakita)
-
-| Acción                                    | Método | Endpoint                          | Ejemplo uso                                                                                           |
-|--------------------------------------------|--------|------------------------------------|-------------------------------------------------------------------------------------------------------|
-| Obtener todos los cursos de inglés         | GET    | `/api/curso/ingles`               | `curl http://localhost:3000/api/curso/ingles`                                                         |
-| Obtener cursos de inglés por grado         | GET    | `/api/curso/ingles/:grado`        | `curl http://localhost:3000/api/curso/ingles/avanzado`                                                |
-| Añadir nuevo curso de inglés               | POST   | `/api/curso/ingles`               | `curl -X POST -H "Content-Type: application/json" -d '{"titulo":"ingles para negocios","grado":"avanzado","vistas":5000,"nivel":"avanzado"}' http://localhost:3000/api/curso/ingles` |
-| Actualizar curso de inglés por ID          | PUT    | `/api/curso/ingles/:id`           | `curl -X PUT -H "Content-Type: application/json" -d '{"titulo":"ingles intermedio actualizado","grado":"intermedio","vistas":20000,"nivel":"intermedio"}' http://localhost:3000/api/curso/ingles/2` |
-| Eliminar curso de inglés por ID            | DELETE | `/api/curso/ingles/:id`           | `curl -X DELETE http://localhost:3000/api/curso/ingles/2`                                             |
+| Acción                                              | Método | Endpoint                                         | Ejemplo uso en Insomnia                                                                                 |
+|-----------------------------------------------------|--------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Obtener todos los cursos de inglés                  | GET    | `/api/curso/ingles`                              | GET → http://localhost:3000/api/curso/ingles                                                            |
+| Obtener un curso de inglés por ID                   | GET    | `/api/curso/ingles/:id`                          | GET → http://localhost:3000/api/curso/ingles/1                                                          |
+| Obtener cursos de inglés por grado                  | GET    | `/api/curso/ingles/grado/:grado`                 | GET → http://localhost:3000/api/curso/ingles/grado/avanzado                                             |
+| Obtener cursos de inglés por nivel                  | GET    | `/api/curso/ingles/nivel/:nivel`                 | GET → http://localhost:3000/api/curso/ingles/nivel/intermedio                                           |
+| Obtener cursos de inglés por vistas mínimas         | GET    | `/api/curso/ingles/vistas/:vistas`               | GET → http://localhost:3000/api/curso/ingles/vistas/5000                                                |
+| Crear un nuevo curso de inglés                      | POST   | `/api/curso/ingles`                              | POST → http://localhost:3000/api/curso/ingles<br>Body (JSON):<br>{<br>  "titulo": "ingles para negocios",<br>  "grado": "avanzado",<br>  "vistas": 5000,<br>  "nivel": "avanzado"<br>} |
+| Actualizar un curso de inglés por ID                | PUT    | `/api/curso/ingles/:id`                          | PUT → http://localhost:3000/api/curso/ingles/2<br>Body (JSON):<br>{<br>  "titulo": "ingles intermedio actualizado",<br>  "grado": "intermedio",<br>  "vistas": 20000,<br>  "nivel": "intermedio"<br>} |
+| Eliminar un curso de inglés por ID                  | DELETE | `/api/curso/ingles/:id`                          | DELETE → http://localhost:3000/api/curso/ingles/2                                                       |
 
 ---
 
