@@ -7,7 +7,7 @@ node.js (de preferecia la ultima version)
 express (de preferencia la ultima version)
 nodemon (de preferencia la ultima version)
 
-npm instsall (para instalar las dependencias)
+npm install (para instalar las dependencias)
 
 instalacion:
 clonar el repositorio desde el el link del proyecto y luego utilizar el comando git clone para descargarlo de manera local.
