@@ -1,0 +1,53 @@
+# Obtener todos los cursos de programación
+GET http://localhost:3000/api/programacion
+
+###
+
+# Obtener un curso de programación por ID (cambia el ID según tus datos)
+GET http://localhost:3000/api/programacion/1
+
+###
+
+# Obtener cursos de programación por lenguaje
+GET http://localhost:3000/api/programacion/lenguaje/javascript
+
+###
+
+# Obtener cursos de programación por nivel
+GET http://localhost:3000/api/programacion/nivel/intermedio
+
+###
+
+# Obtener cursos de programación por vistas mínimas
+GET http://localhost:3000/api/programacion/vistas/100
+
+###
+
+# Crear un nuevo curso de programación
+POST http://localhost:3000/api/programacion
+Content-Type: application/json
+
+{
+  "titulo": "Curso de Python",
+  "lenguaje": "Python",
+  "vistas": 150,
+  "nivel": "principiante"
+}
+
+###
+
+# Actualizar un curso de programación por ID (cambia el ID según tus datos)
+PUT http://localhost:3000/api/programacion/1
+Content-Type: application/json
+
+{
+  "titulo": "Curso de Node.js actualizado",
+  "lenguaje": "JavaScript",
+  "vistas": 200,
+  "nivel": "avanzado"
+}
+
+###
+
+# Eliminar un curso de programación por ID (cambia el ID según tus datos)
+DELETE http://localhost:3000/api/programacion/1
